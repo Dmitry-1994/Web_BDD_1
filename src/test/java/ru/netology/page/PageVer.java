@@ -12,6 +12,7 @@ public class PageVer {
     private SelenideElement buttonField = $("[data-test-id = action-verify] .button__content");
 
     public PageVer() {
+
         codeField.shouldBe(visible);
     }
 

@@ -2,7 +2,6 @@ package ru.netology.page;
 
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
-import org.openqa.selenium.By;
 import ru.netology.data.DataUser;
 
 import static com.codeborne.selenide.Condition.*;
@@ -21,12 +20,12 @@ public class PageDashboard {
     }
 
     public int getCardBalance(DataUser.InfoCard infoCard) {
-        var text = cards.findBy(attribute("data-test-id",infoCard.getId())).getText();
+        var text = cards.findBy(attribute("data-test-id", infoCard.getId())).getText();
         return extractBalance(text);
     }
 
     public PageTransit selectTransitCard(DataUser.InfoCard infoCard) {
-        cards.findBy(attribute("data-test-id",infoCard.getId())).$(action).click();
+        cards.findBy(attribute("data-test-id", infoCard.getId())).$(action).click();
         return new PageTransit();
     }
 

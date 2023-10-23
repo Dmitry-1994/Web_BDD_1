@@ -35,16 +35,22 @@ public class DataUser {
     public static InfoCard getInfoFirstCard() {
         return new InfoCard("5559 0000 0000 0001", "92df3f1c-a033-48e6-8390-206f6b1f56c0");
     }
+
     public static InfoCard getInfoSecondCard() {
         return new InfoCard("5559 0000 0000 0002", "0f3f5c2a-249e-4c3d-8287-09f7a039391d");
     }
 
     public static int getValidAmountTransit(int allBalance) {
-        return new Random().nextInt(allBalance + 1);
+        return new Random().nextInt(Math.abs(allBalance) + 1);
     }
 
     public static int getInvalidAmountTransit(int allBalance) {
-        return new Random().nextInt(100000 - allBalance + 1) + allBalance;
+        return new Random().nextInt(100000 - Math.abs(allBalance) + 1) + allBalance;
     }
 
+    public static float getValidFloatAmountTransit(int allBalance) {
+        float rnd = new Random().nextFloat();
+        float roundedNumber = Math.round(rnd * 100);
+        return (new Random().nextInt(Math.abs(allBalance) + 1) + roundedNumber) / 100;
+    }
 }

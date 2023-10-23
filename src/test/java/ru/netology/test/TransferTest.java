@@ -78,4 +78,22 @@ public class TransferTest {
         assertEquals(expectedBalanceSecondCard, actualBalanceSecondCard);
 
     }
+
+    @Test
+    void positiveTransitMoneyFloat() {
+        var infoFirstCard = getInfoFirstCard();
+        var infoSecondCard = getInfoSecondCard();
+        var infoBalanceFirstCard = pageDashboard.getCardBalance(infoFirstCard);
+        var infoBalanceSecondCard = pageDashboard.getCardBalance(infoSecondCard);
+        var transitPage = pageDashboard.selectTransitCard(infoFirstCard);
+        var moneyTransit = DataUser.getValidFloatAmountTransit(infoBalanceSecondCard);
+        var pageDashboardFinish = transitPage.moneyValidTransit(infoSecondCard, String.valueOf(moneyTransit));
+        var expectedBalanceFirstCard = infoBalanceFirstCard + moneyTransit;
+        var expectedBalanceSecondCard = infoBalanceSecondCard - moneyTransit;
+        var actualBalanceFirstCard = pageDashboardFinish.getCardBalance(infoFirstCard);
+        var actualBalanceSecondCard = pageDashboardFinish.getCardBalance(infoSecondCard);
+        assertEquals(expectedBalanceFirstCard, actualBalanceFirstCard);
+        assertEquals(expectedBalanceSecondCard, actualBalanceSecondCard);
+
+    }
 }
